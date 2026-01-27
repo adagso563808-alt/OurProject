@@ -1,0 +1,27 @@
+package Final_Project;
+
+import javax.swing.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		OurFrame frame = new OurFrame();
+		
+	}
+}
+
+// Main Page of our project
+class OurFrame extends JFrame{
+	
+	public OurFrame() {
+		
+		setSize(900, 600);
+		setTitle("Library Book Borrowing Tracker");
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		
+	}
+	
+}
