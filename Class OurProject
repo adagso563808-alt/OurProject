@@ -3,16 +3,39 @@ package Final_Project;
 import javax.swing.*;
 import java.awt.*;
 
+// Creating a class for our GUI
 class OurFrame extends JFrame{
-		
+	
 	public OurFrame() {
 		
 		setSize(900, 600);
 		setTitle("Library Book Borrowing Tracker");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new BorderLayout());
+		
+		OurButtons button1 = new OurButtons("Test 1", 100, 100);
+		OurButtons button2 = new OurButtons("Test 2", 100, 175);
+		
+		JPanel jp = new JPanel();
+		jp.setLayout(null);
+		jp.add(button1);
+		jp.add(button2);
+		add(jp);
 		setVisible(true);
 	}
 
+}
+
+class OurButtons extends JButton{
+		
+	  public OurButtons(String text, int x, int y) {
+		
+		  super(text);
+		  
+		setBounds(x, y, 100, 50);
+	
+		setBackground(new Color(2, 1, 1));
+		setForeground(Color.white);
+	  }
+	
 }
