@@ -71,6 +71,20 @@ class OurButton extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        String input = OurGUI.pick.getText().trim();
+
+        switch(input){
+            case "1":
+               new BookBorrow();
+               break;
+            case "2":
+               break;
+            case "3":
+               break;
+            case "4":
+               break;
+            default:
+        }
     }
 }
 
