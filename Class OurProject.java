@@ -21,6 +21,7 @@ public class OurGUI extends JFrame {
 
         panel = new JPanel();
         panel.setLayout(null);
+		panel.setBackground(Color.LightGray);
 
         title = new JLabel("LIBRARY BOOK BORROWING TRACKER");
         title.setFont(new Font("Times New Roman", Font.BOLD, 24));
