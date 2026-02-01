@@ -9,7 +9,7 @@ public class OurGUI extends JFrame {
 
     private JPanel panel;
     private JLabel title;
-    private static JTextField pick;
+    static JTextField pick;
     private OurButton button;
 
     public OurGUI() {
@@ -21,7 +21,7 @@ public class OurGUI extends JFrame {
 
         panel = new JPanel();
         panel.setLayout(null);
-		panel.setBackground(Color.LightGray);
+		panel.setBackground(Color.lightGray);
 
         title = new JLabel("LIBRARY BOOK BORROWING TRACKER");
         title.setFont(new Font("Times New Roman", Font.BOLD, 24));
@@ -30,7 +30,7 @@ public class OurGUI extends JFrame {
 
         panel.add(new OurChoices("1. BORROW A BOOK", 50, 120));
         panel.add(new OurChoices("2. RETURN A BOOK", 50, 170));
-        panel.add(new OurChoices("3. VIEW RETURN AND BORROWED BOOKS", 50, 220));
+        panel.add(new OurChoices("3. VIEW RETURNED AND BORROWED BOOKS", 50, 220));
         panel.add(new OurChoices("4. EXIT", 50, 270));
 
         JLabel enter = new JLabel("ENTER CHOICE:");
@@ -40,6 +40,7 @@ public class OurGUI extends JFrame {
 
         pick = new JTextField();
         pick.setBounds(200, 330, 100, 30);
+        pick.setFont(new Font("Times New Roman", Font.BOLD, 18));
         panel.add(pick);
 
         button = new OurButton("Submit");
@@ -55,7 +56,9 @@ public class OurGUI extends JFrame {
 class OurChoices extends JLabel {
 
     public OurChoices(String text, int x, int y) {
-        super(text);
+    	
+    	super(text);
+    	
         setFont(new Font("Times New Roman", Font.BOLD, 18));
         setBounds(x, y, 500, 30);
     }
@@ -70,24 +73,38 @@ class OurButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        String input = OurGUI.pick.getText().trim();
 
+        try {
+        
+        int input = Integer.parseInt(OurGUI.pick.getText().trim());
+        
         switch(input){
-            case "1":
+            case 1:
                new BookBorrow();
                break;
-            case "2":
+            case 2:
+               new ReturnBook();
                break;
-            case "3":
+            case 3:
                break;
-            case "4":
+            case 4:
+            	if(input == 4) {
+            		JOptionPane.showMessageDialog(null, "Thank you for your transaction!");
+            	}
+            	System.exit(1);
                break;
             default:
+            	JOptionPane.showMessageDialog(null,"Enter a number 1 to 4 only!");
+            	break;
         }
-    }
-}
-
+        }catch(NumberFormatException ex) {
+        	JOptionPane.showMessageDialog(null, ex);
+        }
+        
+     }
+  }
+	
+// OPTION 1
 class BookBorrow extends JFrame {
 
     public BookBorrow() {
@@ -101,6 +118,29 @@ class BookBorrow extends JFrame {
         panel.setLayout(null);
 
         JLabel title = new JLabel("BORROW A BOOK");
+        title.setFont(new Font("Times New Roman", Font.BOLD, 24));
+        title.setBounds(350, 20, 300, 40);
+        panel.add(title);
+
+        add(panel);
+        setVisible(true);
+    }
+}
+
+// OPTION 2
+class ReturnBook extends JFrame {
+
+    public ReturnBook() {
+
+        setTitle("Return a book");
+        setSize(900, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+
+        JLabel title = new JLabel("RETURN A BOOK");
         title.setFont(new Font("Times New Roman", Font.BOLD, 24));
         title.setBounds(350, 20, 300, 40);
         panel.add(title);
