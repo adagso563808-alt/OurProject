@@ -20,6 +20,7 @@ class Frame extends JFrame
     private JPanel east, center;
     private DefaultTableModel model;
     private JTable table;
+    
      Frame()
     {
         setSize(900, 600);
@@ -51,60 +52,37 @@ class Frame extends JFrame
         center = new JPanel();
         center.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         JLabel title = new JLabel("Library Borrowing Tracker");
-        title.setFont(new Font("Times New Roman", Font.BOLD + Font.ITALIC, 32));
+        title.setFont(new Font("Times New Roman", Font.BOLD + Font.ITALIC, 32)); 
         center.add(title);
         add(center, BorderLayout.CENTER);
         
         btnBorrow.addActionListener(e -> {borrowWindow();});
         btnView.addActionListener(e -> {view();});
+        exit.addActionListener(e ->{System.exit(0);});
         
     }
      
-     public void borrowWindow()
+     private void borrowWindow()
      {
          JFrame borrow = new JFrame();
          borrow.setSize(900, 600);
          borrow.setLocationRelativeTo(null);
          borrow.setTitle("Borrow A Book");
          borrow.setLayout(new BorderLayout());
+         borrow.setResizable(false);
          
-         JPanel center, west;
-         JLabel bookName, author, dateBorrowed;
-         JTextField nameField, authorField, dateField;
-         
-         bookName = new JLabel();
-         author = new JLabel();
-         dateBorrowed = new JLabel();
-         
-         nameField = new JTextField();
-         authorField = new JTextField();
-         dateField = new JTextField();
-         
-           
-                 
-         GridBagConstraints gbc = new GridBagConstraints();
-         gbc.fill = GridBagConstraints.BOTH;
-        
-         center = new JPanel();
-         center.setLayout(new GridBagLayout());
-         
-         gbc.gridx = 0;
-         gbc.gridy = 0;
-         gbc.gridwidth = 2;
-         center.add(new JLabel("Enter Borrowed Book"), gbc);
-         borrow.add(center, BorderLayout.WEST);
-         
-         
-         
-         
-         
-         
-         
+         JPanel north = new JPanel();
+         JLabel title = new JLabel("BORROW A BOOK");
+         title.setFont(new Font("Times New Roman", Font.BOLD + Font.ITALIC, 24));
+         title.setHorizontalAlignment(JLabel.CENTER);
+         title.setVerticalAlignment(JLabel.CENTER);
+         title.setPreferredSize(new Dimension(100, 100));
+         borrow.add(title, BorderLayout.NORTH);
          
          borrow.setVisible(true);
      }
      
-     public void view()
+     private void view()
      {
          JFrame view = new JFrame();
          view.setSize(900, 600);
@@ -112,10 +90,46 @@ class Frame extends JFrame
          view.setTitle("Borrow A Book");
          view.setLayout(new BorderLayout());
          
+         JLabel title = new JLabel("LIST OF BORROWED AND RETURNED BOOKS");
+         title.setHorizontalAlignment(JLabel.CENTER);
+         title.setVerticalAlignment(JLabel.CENTER);
+         title.setPreferredSize(new Dimension(100, 100));
+         title.setFont(new Font("Times New Roman", Font.BOLD + Font.ITALIC, 24));
+         view.add(title, BorderLayout.NORTH);
+         
+         
+         
+         
+         
+         
+         
          String[] column = {"Name of Book", "Borrowed/Returned", "Date Borrowed", "Date Returned"};
          
-         model = new DefaultTableModel(column, 0);
+         model = new DefaultTableModel(column, 0){
+             @Override
+             public boolean isCellEditable(int row, int column){
+                 return false;
+             }
+         };
          table = new JTable(model);
+         view.add(new JScrollPane(table), BorderLayout.CENTER);
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
          
          view.setVisible(true);
      }
